@@ -1,6 +1,7 @@
 package fr.xebia.blog.craft.GenericAssert;
 
 import java.math.BigDecimal;
+import java.util.Currency;
 
 import org.fest.assertions.Assertions;
 import org.fest.assertions.GenericAssert;
@@ -46,6 +47,14 @@ public class OptionalAmountAsserter extends GenericAssert<OptionalAmountAsserter
     	Assertions.assertThat(actualValue).describedAs(VALUE_DESC).isEqualTo(expected);
     	return this;
     }
+
+	public OptionalAmountAsserter hasCurrency(Currency expected) {
+		Assertions.assertThat(actual).overridingErrorMessage(NULL_ERROR).isNotNull();
+    	isPresent();
+    	Currency currency = actual.get().getCurrency();
+    	Assertions.assertThat(currency).describedAs(CURRENCY_DESC).isEqualTo(expected);    	
+    	return this;
+	}
     
     
     
