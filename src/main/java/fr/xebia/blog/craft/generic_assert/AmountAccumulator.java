@@ -19,13 +19,19 @@ public class AmountAccumulator {
 	}
 	
 	public AmountAccumulator accumulate(final Amount amount) {
+		
 		final AmountAccumulator nextState;
 		
 		if(!this.amount.isPresent()){
 			nextState = new AmountAccumulator(amount);
-		}else {
-			Amount currentState = this.amount.get();
-			nextState = new AmountAccumulator(currentState.add(amount.getValue()));
+		} else {
+			final Amount currentState = this.amount.get();
+			if(currentState.getCurrency().equals(amount.getCurrency())){
+				nextState = new AmountAccumulator(currentState.add(amount.getValue()));
+			}else {
+				nextState = new AmountAccumulator();
+			}
+			
 		}
 		return nextState;
 	}

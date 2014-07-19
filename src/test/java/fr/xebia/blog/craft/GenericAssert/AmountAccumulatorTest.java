@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import com.google.common.base.Optional;
 
-import static org.fest.assertions.Assertions.assertThat;
 import fr.xebia.blog.craft.generic_assert.Amount;
 import fr.xebia.blog.craft.generic_assert.AmountAccumulator;
 
@@ -16,13 +15,7 @@ public class AmountAccumulatorTest {
 	public static final BigDecimal FIVE = new BigDecimal("5");
 	public static final BigDecimal TEN = new BigDecimal("10");
 	public static final Currency USD = Currency.getInstance("USD");
-	public static final Currency EURO = Currency.getInstance("EUR");
-	
-	private static final String ABSENCE_ERROR = "The amount shouldn't exist";
-	private static final String PRESENCE_ERROR = "The amount should exist";
-	private static final String CURRENCY_DESC = "Currency of the amount";
-	private static final String VALUE_DESC = "Value of the amount";
-		
+	public static final Currency EURO = Currency.getInstance("EUR");		
 
 	@Test
 	public void should_get_absent_for_empty_accumulator() {
