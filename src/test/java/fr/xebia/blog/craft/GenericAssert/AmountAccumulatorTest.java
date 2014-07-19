@@ -38,11 +38,23 @@ public class AmountAccumulatorTest {
 	@Test
 	public void should_get_10_USD_when_accumulate_5_USD_2_times(){
 		
-		Amount _5_USD = new Amount(FIVE, USD);		
+		Amount _5_USD = new Amount(FIVE, USD);	
+		Amount _10_USD = new Amount(TEN, USD);
 		Optional<Amount> actualAmount = new AmountAccumulator().accumulate(_5_USD).accumulate(_5_USD).getAmount();
-		assertThat(actualAmount.isPresent()).isTrue();
-		assertThat(actualAmount.get().getCurrency()).isEqualTo(USD);
-		assertThat(actualAmount.get().getValue()).isEqualTo(TEN);
-	}
+		
+		//PRESENCE OF AMOUNT
+		assertThat(actualAmount.isPresent()).overridingErrorMessage(PRESENCE_ERROR).isTrue();
+		
+		//CURRENCY 
+		Currency actualCurrency = actualAmount.get().getCurrency();
+		Currency expectedCurrency = USD;
+		assertThat(actualCurrency).describedAs(CURRENCY_DESC).isEqualTo(expectedCurrency);
+	
+		//VALUE
+		BigDecimal actualValue = actualAmount.get().getValue();
+		BigDecimal expectedValue = TEN;
+		assertThat(actualValue).describedAs(VALUE_DESC).isEqualTo(expectedValue);
+		
+	 }
 
 }
