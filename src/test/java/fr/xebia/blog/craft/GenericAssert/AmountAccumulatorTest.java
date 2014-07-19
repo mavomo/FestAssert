@@ -39,7 +39,12 @@ public class AmountAccumulatorTest {
 	public void should_get_10_USD_when_accumulate_5_USD_2_times(){
 		
 		Amount _5_USD = new Amount(FIVE, USD);	
-		Amount _10_USD = new Amount(TEN, USD);
+		
+		//Uncomment to make this test fail with the VALUE_DESC message defined above.
+		/** 
+		 * Amount _10_USD = new Amount(TEN, USD);
+		   Optional<Amount> actualAmount = new AmountAccumulator().accumulate(_10_USD).accumulate(_5_USD).getAmount();
+		*/
 		Optional<Amount> actualAmount = new AmountAccumulator().accumulate(_5_USD).accumulate(_5_USD).getAmount();
 		
 		//PRESENCE OF AMOUNT
