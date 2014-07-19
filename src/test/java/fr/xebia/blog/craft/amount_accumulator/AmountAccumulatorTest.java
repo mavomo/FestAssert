@@ -1,4 +1,6 @@
-package fr.xebia.blog.craft.GenericAssert;
+package fr.xebia.blog.craft.amount_accumulator;
+
+import static fr.xebia.blog.craft.assertions.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.util.Currency;
@@ -20,26 +22,24 @@ public class AmountAccumulatorTest {
 	@Test
 	public void should_get_absent_for_empty_accumulator() {
 		Optional<Amount> actualAmount = new AmountAccumulator().getAmount();
-		OptionalAmountAsserter.assertThat(actualAmount).isAbsent();
+		assertThat(actualAmount).isAbsent();
 	}
 	
 	@Test
-	public void should_get_10_USD_when_accumulate_5_USD_2_times(){
-		
+	public void should_get_10_USD_when_accumulate_5_USD_2_times() {		
 		Amount _5_USD = new Amount(FIVE, USD);		
 		Optional<Amount> actualAmount = new AmountAccumulator().accumulate(_5_USD).accumulate(_5_USD).getAmount();
 		
 		//PRESENCE OF AMOUNT
-		OptionalAmountAsserter.assertThat(actualAmount).hasCurrency(USD).hasValue(TEN);
+		assertThat(actualAmount).hasCurrency(USD).hasValue(TEN);
 	 }
 	
 	@Test
 	public void should_get_absent_for_accumulation_of_different_currencies(){
 		Amount _5_USD = new Amount(FIVE, USD);
-        Amount _10_EUR = new Amount(TEN, EURO);
-        
+        Amount _10_EUR = new Amount(TEN, EURO);        
 		Optional<Amount> amount = new AmountAccumulator().accumulate(_5_USD).accumulate(_10_EUR).getAmount();
-        OptionalAmountAsserter.assertThat(amount).isAbsent();
+        assertThat(amount).isAbsent();
 
 	}
 

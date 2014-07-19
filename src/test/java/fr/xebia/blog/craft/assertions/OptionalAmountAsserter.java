@@ -1,4 +1,4 @@
-package fr.xebia.blog.craft.GenericAssert;
+package fr.xebia.blog.craft.assertions;
 
 import java.math.BigDecimal;
 import java.util.Currency;
