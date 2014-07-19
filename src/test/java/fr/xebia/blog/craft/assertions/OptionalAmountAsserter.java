@@ -3,14 +3,13 @@ package fr.xebia.blog.craft.assertions;
 import java.math.BigDecimal;
 import java.util.Currency;
 
-import org.fest.assertions.Assertions;
-import org.fest.assertions.GenericAssert;
+import org.fest.assertions.api.AbstractAssert;
 
 import com.google.common.base.Optional;
 
 import fr.xebia.blog.craft.generic_assert.Amount;
 
-public class OptionalAmountAsserter extends GenericAssert<OptionalAmountAsserter, Optional<Amount>> {
+public class OptionalAmountAsserter extends AbstractAssert<OptionalAmountAsserter, Optional<Amount>> {
 	
 	
 	private static final String NULL_ERROR = "The amount should not be null";
@@ -20,7 +19,7 @@ public class OptionalAmountAsserter extends GenericAssert<OptionalAmountAsserter
     private static final String VALUE_DESC = "Value of the amount";
     
     protected OptionalAmountAsserter(Optional<Amount> actual) {
-		super(OptionalAmountAsserter.class, actual);
+		super(actual, OptionalAmountAsserter.class);
 	}
     
     public static OptionalAmountAsserter assertThat(Optional<Amount> actual){
