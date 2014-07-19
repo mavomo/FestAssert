@@ -30,6 +30,12 @@ public class AmountAccumulatorTest {
 	}
 	
 	@Test
+	public void should_get_absent_for_empty_accumulator_and_fail_with_personalized_message() {
+		Optional<Amount> actualAmount = new AmountAccumulator().getAmount();
+		assertThat(actualAmount.isPresent()).overridingErrorMessage(ABSENCE_ERROR).isFalse();
+	}
+	
+	@Test
 	public void should_get_10_USD_when_accumulate_5_USD_2_times(){
 		
 		Amount _5_USD = new Amount(FIVE, USD);		
